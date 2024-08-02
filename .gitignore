@@ -1,0 +1,14 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Library/config
+/.vs/Library/DesignTimeBuild
+/.vs/Library/FileContentIndex
+/.vs/Library/v17/TestStore/0
+/.vs/Library/v17/.futdcache.v2
+/.vs/Library/v17/.suo
+/.vs/ProjectEvaluation/library.metadata.v7.bin
+/.vs/ProjectEvaluation/library.projects.v7.bin
+/Library/bin
+/Library/obj
