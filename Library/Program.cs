@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen().ConfigureSwaggerGen(options =>
 {
-    options.CustomSchemaIds( x=> x.FullName );
+    options.CustomSchemaIds(x => x.FullName);
 });
 builder.Services.AddCors(options =>
 {
@@ -22,11 +22,8 @@ builder.Services.AddHttpClient();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseCors("localhost");
