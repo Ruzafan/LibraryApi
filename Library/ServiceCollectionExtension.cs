@@ -1,17 +1,19 @@
 using Library.Features.DownloadBook.V1;
-using Library.Features.GetBooksList.V1;
+using Library.Features.GetBooksList.V1.Extensions;
 using Library.Features.GetUserBookDetail.V1;
 using Library.Features.GetUserBooksList.V1;
 using Library.Features.UpsertBook.V1;
 using Library.Features.UpsertUserBook.V1;
 using MongoDB.Driver;
 
+namespace Library;
+
 public static class ServiceCollectionExtension
 {
 
     public static IServiceCollection AddMongoDb(this IServiceCollection services, IConfiguration configuration)
     {
-        var mongoClient = new MongoClient(configuration.GetValue<string>("MongoDB:ConnectionString"));
+        var mongoClient = new MongoClient(configuration.GetValue<string>("MONGODB_URI"));
         services.AddSingleton(mongoClient);
         return services;
     }

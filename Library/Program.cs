@@ -1,6 +1,10 @@
+using Library;
+using Library.Features.GetBooksList.V1.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddLogging();
 builder.Services.AddFeatures();
 builder.Services.AddMongoDb(builder.Configuration);
 builder.Services.AddControllers();
@@ -10,24 +14,17 @@ builder.Services.AddSwaggerGen().ConfigureSwaggerGen(options =>
 {
     options.CustomSchemaIds(x => x.FullName);
 });
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("localhost",
-        policy =>
-        {
-            policy.AllowAnyOrigin();
-        });
-});
+
 builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
-app.UseCors("localhost");
 app.UseAuthorization();
-app.MapControllers();
+//app.MapControllers();
+app.MapGetListEndpoint();
 
 app.Run();

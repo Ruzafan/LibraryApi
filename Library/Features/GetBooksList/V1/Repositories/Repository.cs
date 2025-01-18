@@ -17,7 +17,7 @@ namespace Library.Features.GetBooksList.V1.Repositories
         {
             var filterBuilder = Builders<Book>.Filter;
             var filter = filterBuilder.Eq(q=> q.Status,Status.Active);
-            return _mongoCollection.Find(filter).Limit(10).Skip(page).ToList();
+            return _mongoCollection.Find(filter).Limit(10).Skip(page-1).ToList();
         }
     }
 }
