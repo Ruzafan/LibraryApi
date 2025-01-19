@@ -1,28 +1,27 @@
-﻿using Library.Features.GetUserBookDetail.V1.Repositories;
+﻿
+using Library.Entities;
+using Library.Repository;
+using MongoDB.Driver;
 
 namespace Library.Features.GetUserBookDetail.V1
 {
-    public class Handler
+    public class Handler (IBookRepository bookRepository, IUserBookRepository userBookRepository)
     {
-        private IRepository _repository;
-        public Handler(IRepository repository)
-        {
-            _repository = repository;
-        }
-
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken = default)
         {
             var response = new Response();
+            var filter = Builders<UserBook>.Filter;
+            var userFilter = Builders<UserBook>.Filter.And(
+                filter.Eq(u => u.BookId, request.BookId),
+                filter.Eq(u => u.UserId, request.UserId)
+            ); 
+            var userBook = (await userBookRepository.QueryItems(userFilter, cancellationToken)).FirstOrDefault();
 
-            var userBook = await _repository.GetUserBook(request.BookId,request.UserId, cancellationToken);
-            
-            if (userBook is not null)
+            if (userBook is null) return response;
+            var book = await bookRepository.GetBook(request.BookId, cancellationToken);
+            if(book is not null)
             {
-                var book = await _repository.GetBook(request.BookId, cancellationToken);
-                if(book is not null)
-                {
-                    response.Book = userBook.ToBookResponse(book);
-                }
+                response.Book = userBook.ToBookResponse(book);
             }
 
             return response;

@@ -1,6 +1,6 @@
 using Library.Features.DownloadBook.V1.Repositories;
 
-namespace Library.Features.DownloadBook.V1
+namespace Library.Features.DownloadBook.V1.Extensions
 {
     public static class ServiceCollectionExtension
     {
@@ -8,7 +8,7 @@ namespace Library.Features.DownloadBook.V1
         public static IServiceCollection AddDownloadBookV1(this IServiceCollection services)
         {
             services.AddSingleton<Handler>();
-            services.AddSingleton<IRepository, Repository>();
+            services.AddSingleton<IRepository, Repositories.Repository>();
             return services;
         }
     }

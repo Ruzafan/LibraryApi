@@ -1,18 +1,12 @@
-using Library.Features.UpsertBook.V1.Repositories;
+using Library.Repository;
 
 namespace Library.Features.UpsertBook.V1
 {
-    public class Handler
+    public class Handler(IBookRepository bookRepository)
     {
-        private IRepository _repository;
-        public Handler(IRepository repository)
-        {
-            _repository = repository;
-        }
-
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken = default)
         {
-            await _repository.AddBook(new Entities.Book(request.Title)
+            await bookRepository.AddBook(new Entities.Book(request.Title)
             {
                 Image = request.Image,
                 Status = Entities.Status.Active

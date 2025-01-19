@@ -1,4 +1,6 @@
 using Library;
+using Library.Features.GetBooksList;
+using Library.Features.GetBooksList.V1;
 using Library.Features.GetBooksList.V1.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

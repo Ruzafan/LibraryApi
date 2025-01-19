@@ -12,8 +12,4 @@
 	<PackageReference Include="MongoDB.Driver" Version="2.26.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\GetBookDetail\V1\" />
-  </ItemGroup>
-
 </Project>
