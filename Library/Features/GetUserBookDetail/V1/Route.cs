@@ -8,8 +8,9 @@ public static class Route
             {
                 var request = new Request() { UserId = userId, BookId = bookId };
                 var response = await handler.Handle(request, cancellationToken);
-                if (response.Book is null) { return Results.NotFound(); }
-                return Results.Ok(response.Book);
+                return response.Book is null 
+                    ? Results.NotFound() 
+                    : Results.Ok(response.Book);
             })
             .WithName("GetUserBookDetail");
     }

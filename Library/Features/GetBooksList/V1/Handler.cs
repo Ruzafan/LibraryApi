@@ -1,8 +1,9 @@
-using Library.Repository;
+using Library.Entities;
+using Library.Repositories;
 
 namespace Library.Features.GetBooksList.V1
 {
-    public class Handler(IBookRepository bookRepository)
+    public class Handler(IRepository<Book> bookRepository)
     {
         public async Task<Response> Handle(int page, CancellationToken cancellationToken = default)
         {

@@ -1,11 +1,11 @@
 ﻿
 using Library.Entities;
-using Library.Repository;
+using Library.Repositories;
 using MongoDB.Driver;
 
 namespace Library.Features.GetUserBookDetail.V1
 {
-    public class Handler (IBookRepository bookRepository, IUserBookRepository userBookRepository)
+    public class Handler (IRepository<Book> bookRepository, IRepository<UserBook> userBookRepository)
     {
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken = default)
         {
@@ -18,7 +18,7 @@ namespace Library.Features.GetUserBookDetail.V1
             var userBook = (await userBookRepository.QueryItems(userFilter, cancellationToken)).FirstOrDefault();
 
             if (userBook is null) return response;
-            var book = await bookRepository.GetBook(request.BookId, cancellationToken);
+            var book = await bookRepository.Get(request.BookId, cancellationToken);
             if(book is not null)
             {
                 response.Book = userBook.ToBookResponse(book);

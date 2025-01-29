@@ -1,14 +1,13 @@
-using Library.Features.DownloadBook.V1;
-using Library.Features.DownloadBook.V1.Extensions;
+using Library.Entities;
+using Library.Features.GetBookDetail.V1;
+using Library.Features.GetBooksList.V1;
 using Library.Features.GetBooksList.V1.Extensions;
 using Library.Features.GetUserBookDetail.V1;
 using Library.Features.GetUserBookDetail.V1.Extensions;
 using Library.Features.GetUserBookList.V1.Extensions;
-using Library.Features.GetUserBooksList.V1;
-using Library.Features.UpsertBook.V1;
 using Library.Features.UpsertBook.V1.Extensions;
-using Library.Features.UpsertUserBook.V1;
 using Library.Features.UpsertUserBook.V1.Extensions;
+using Library.Repositories;
 using MongoDB.Driver;
 
 namespace Library;
@@ -29,9 +28,15 @@ public static class ServiceCollectionExtension
         services.AddUpsertUserBookV1();
         services.AddGetUserBookV1();
         services.AddGetUserBooksListV1();
-        services.AddDownloadBookV1();
-        services.AddSingleton<Repository.IBookRepository, Repository.BookRepository>();
-        services.AddSingleton<Repository.IUserBookRepository, Repository.UserBookRepository>();
+        services.AddSingleton<IRepository<Book>, Repository<Book>>();
+        services.AddSingleton<IRepository<UserBook>, Repository<UserBook>>();
         return services;
+    }
+
+    public static void MapEndpoints(this WebApplication app)
+    {
+        app.MapGetListEndpoint();
+        app.MapGetDetailEndpoint();
+        app.MapBookDetailEndpoint();
     }
 }

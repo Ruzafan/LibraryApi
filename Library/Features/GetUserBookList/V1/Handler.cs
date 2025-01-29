@@ -1,10 +1,10 @@
 ﻿using Library.Entities;
-using Library.Repository;
+using Library.Repositories;
 using MongoDB.Driver;
 
 namespace Library.Features.GetUserBookList.V1
 {
-    public class Handler(IUserBookRepository repository, IBookRepository bookRepository)
+    public class Handler(IRepository<UserBook> repository, IRepository<Book> bookRepository)
     {
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken = default)
         {
