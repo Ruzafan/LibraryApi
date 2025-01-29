@@ -1,5 +1,4 @@
 ﻿using Library.Entities;
-using Library.Features.GetUserBooksList.V1;
 
 namespace Library.Features.GetUserBookList.V1
 {

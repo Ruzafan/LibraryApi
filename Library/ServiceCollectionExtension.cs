@@ -4,6 +4,7 @@ using Library.Features.GetBooksList.V1;
 using Library.Features.GetBooksList.V1.Extensions;
 using Library.Features.GetUserBookDetail.V1;
 using Library.Features.GetUserBookDetail.V1.Extensions;
+using Library.Features.GetUserBookList.V1;
 using Library.Features.GetUserBookList.V1.Extensions;
 using Library.Features.UpsertBook.V1.Extensions;
 using Library.Features.UpsertUserBook.V1.Extensions;
@@ -35,8 +36,9 @@ public static class ServiceCollectionExtension
 
     public static void MapEndpoints(this WebApplication app)
     {
-        app.MapGetListEndpoint();
-        app.MapGetDetailEndpoint();
-        app.MapBookDetailEndpoint();
+        app.MapGetBookListEndpoint();
+        app.MapGetBookDetailEndpoint();
+        app.MapUserBookDetailEndpoint();
+        app.MapUserBookListEndpoint();
     }
 }
