@@ -6,7 +6,9 @@ using Library.Features.GetUserBookDetail.V1;
 using Library.Features.GetUserBookDetail.V1.Extensions;
 using Library.Features.GetUserBookList.V1;
 using Library.Features.GetUserBookList.V1.Extensions;
+using Library.Features.UpsertBook.V1;
 using Library.Features.UpsertBook.V1.Extensions;
+using Library.Features.UpsertUserBook.V1;
 using Library.Features.UpsertUserBook.V1.Extensions;
 using Library.Repositories;
 using MongoDB.Driver;
@@ -40,5 +42,7 @@ public static class ServiceCollectionExtension
         app.MapGetBookDetailEndpoint();
         app.MapUserBookDetailEndpoint();
         app.MapUserBookListEndpoint();
+        app.MapUpsertBookEndpoint();
+        app.MapUpsertUserBookEndpoint();
     }
 }
