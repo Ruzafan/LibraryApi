@@ -9,7 +9,7 @@ public class Repository<T> : IRepository<T> where T : class
     public Repository(MongoClient client)
     {
         var database = client.GetDatabase("Library");
-        _mongoCollection = database.GetCollection<T>(nameof(T));
+        _mongoCollection = database.GetCollection<T>(typeof(T).Name+"s");
     }
     public Task<List<T>> QueryItems(FilterDefinition<T> filterDefinition, CancellationToken cancellationToken = default)
     {

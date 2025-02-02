@@ -1,10 +1,12 @@
-﻿namespace Library.Features.GetUserBookList.V1;
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Library.Features.GetUserBookList.V1;
 
 public static class Route
 {
     public static void MapUserBookListEndpoint(this WebApplication app)
     {
-        app.MapGet("/library/userbook/v1/{userId}", async (Guid userId, CancellationToken cancellationToken, Handler handler) =>
+        app.MapGet("/library/userbook/v1/{userId}", async ([FromRoute] string userId, CancellationToken cancellationToken, Handler handler) =>
             {
                 var request = new Request() { UserId = userId };
                 var response = await handler.Handle(request, cancellationToken);

@@ -1,5 +1,6 @@
 using Library.Entities;
 using Library.Features.GetBookDetail.V1;
+using Library.Features.GetBookDetail.V1.Extensions;
 using Library.Features.GetBooksList.V1;
 using Library.Features.GetBooksList.V1.Extensions;
 using Library.Features.GetUserBookDetail.V1;
@@ -31,6 +32,7 @@ public static class ServiceCollectionExtension
         services.AddUpsertUserBookV1();
         services.AddGetUserBookV1();
         services.AddGetUserBooksListV1();
+        services.AddGetBookV1();
         services.AddSingleton<IRepository<Book>, Repository<Book>>();
         services.AddSingleton<IRepository<UserBook>, Repository<UserBook>>();
         return services;
