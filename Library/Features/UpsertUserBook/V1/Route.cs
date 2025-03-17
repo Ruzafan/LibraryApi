@@ -14,7 +14,8 @@ namespace Library.Features.UpsertUserBook.V1
                         ? Results.Problem(response.Errors.First().Value, statusCode: (int)HttpStatusCode.Conflict, title: response.Errors.First().Key) 
                         : Results.Ok();
                 })
-                .WithName("UpsertUserBook");
+                .WithName("UpsertUserBook")
+                .RequireAuthorization();
         }
     }
 }

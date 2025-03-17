@@ -11,7 +11,8 @@ namespace Library.Features.GetUserBookList.V1
            => new BookResponse()
            {
                Title = bookEntity.Title,
-               Image = bookEntity.Image
+               Image = bookEntity.Image,
+               BookId = bookEntity.Id
            };
     }
 }

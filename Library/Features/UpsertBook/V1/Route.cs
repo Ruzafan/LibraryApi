@@ -11,7 +11,8 @@ namespace Library.Features.UpsertBook.V1
                     var response = await handler.Handle(request, cancellationToken);
                     return response.Errors.Count != 0 ? Results.Problem() : Results.Ok();
                 })
-                .WithName("UpsertBook");
+                .WithName("UpsertBook")
+                .RequireAuthorization();
         }
     }
 }

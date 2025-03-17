@@ -1,4 +1,6 @@
-﻿namespace Library.Features.GetUserBookList.V1
+﻿using Library.Entities;
+
+namespace Library.Features.GetUserBookList.V1
 {
     public class Request
     {

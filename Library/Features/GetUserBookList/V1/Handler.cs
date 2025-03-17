@@ -8,8 +8,11 @@ namespace Library.Features.GetUserBookList.V1
     {
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken = default)
         {
-            var userBookFilter = Builders<UserBook>.Filter.Eq(u => u.UserId, request.UserId);
-            var userBooks = await repository.QueryItems(userBookFilter, cancellationToken);
+            var userBookFilter = Builders<UserBook>.Filter;
+            
+            var userFilter = userBookFilter.And(userBookFilter.Eq(u => u.UserId, request.UserId));
+                //, userBookFilter.Eq(q=>q.StatusType, StatusType.Owned) );
+            var userBooks = await repository.QueryItems(userFilter, cancellationToken);
             if(userBooks.Count == 0) { return new Response(); }
 
             var filter = Builders<Book>.Filter.In(b => b.Id, userBooks.Select(q => q.BookId).ToList());

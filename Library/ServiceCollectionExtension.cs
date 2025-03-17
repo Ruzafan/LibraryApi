@@ -1,3 +1,4 @@
+using System.Text;
 using Library.Entities;
 using Library.Features.GetBookDetail.V1;
 using Library.Features.GetBookDetail.V1.Extensions;
@@ -12,6 +13,8 @@ using Library.Features.UpsertBook.V1.Extensions;
 using Library.Features.UpsertUserBook.V1;
 using Library.Features.UpsertUserBook.V1.Extensions;
 using Library.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 
 namespace Library;
@@ -46,5 +49,27 @@ public static class ServiceCollectionExtension
         app.MapUserBookListEndpoint();
         app.MapUpsertBookEndpoint();
         app.MapUpsertUserBookEndpoint();
+    }
+    
+    public static IServiceCollection AddJWT(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = "your_issuer",
+                ValidAudience = "your_audience",
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("SecretKey","")))
+            };
+        });
+        return services;
     }
 }

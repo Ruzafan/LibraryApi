@@ -24,6 +24,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddHttpClient();
 
+
+builder.Services.AddJWT(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,10 +40,6 @@ app.UseAuthorization();
 
 app.MapEndpoints();
 
-
-app.UseRouting();
-
 app.MapGet("/library/alive", context => Task.CompletedTask);
-
 
 app.Run();

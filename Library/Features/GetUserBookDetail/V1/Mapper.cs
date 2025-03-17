@@ -10,7 +10,8 @@ namespace Library.Features.GetUserBookDetail.V1
               Title = book.Title,
               Image = book.Image,
               Rating = userbook.Rating,
-              Comments = userbook.Comments
+              Comments = userbook.Comments,
+              BookId = userbook.BookId,
           };
        
     }

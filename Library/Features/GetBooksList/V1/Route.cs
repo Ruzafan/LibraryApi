@@ -11,6 +11,7 @@ public static class Route
                 var response = await handler.Handle(page, cancellationToken);
                 return response.Books.Count == 0 ? Results.NotFound() : Results.Ok(response.Books);
             })
-            .WithName("GetBooksList");
+            .WithName("GetBooksList")
+            .RequireAuthorization();
     }
 }

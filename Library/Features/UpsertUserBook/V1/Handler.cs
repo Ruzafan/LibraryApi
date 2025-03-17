@@ -19,7 +19,8 @@ namespace Library.Features.UpsertUserBook.V1
                 Comments = request.Comments,
                 CreationDate = DateTime.UtcNow,
                 UserId = request.UserId,
-                Rating = request.Rating
+                Rating = request.Rating,
+                StatusType = request.GetStatusType()
             }, cancellationToken);
 
             return new Response();
