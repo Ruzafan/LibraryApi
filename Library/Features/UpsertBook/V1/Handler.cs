@@ -10,7 +10,10 @@ namespace Library.Features.UpsertBook.V1
             await bookRepository.Add(new Book(request.Title)
             {
                 Image = request.Image,
-                Status = Status.Active
+                Status = Status.Active,
+                Title = request.Title,
+                Authors = request.Authors,
+                
             }, cancellationToken);
             return new Response();
         }

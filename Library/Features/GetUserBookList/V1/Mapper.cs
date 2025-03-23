@@ -12,7 +12,7 @@ namespace Library.Features.GetUserBookList.V1
            {
                Title = bookEntity.Title,
                Image = bookEntity.Image,
-               BookId = bookEntity.Id
+               Id = bookEntity.Id
            };
     }
 }

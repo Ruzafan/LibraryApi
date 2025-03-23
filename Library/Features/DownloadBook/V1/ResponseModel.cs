@@ -10,15 +10,9 @@
     {
         public string[] author_name { get; set; }
         public int cover_i { get; set; }
-        public string[] isbn { get; set; }
+        public string key { get; set; }
         public string[] language { get; set; }
-        public int number_of_pages_median { get; set; }
         public string title { get; set; }
-        public string title_suggest { get; set; }
-        public string[] person { get; set; }
-        public string[] time { get; set; }
-        public string[] place { get; set; }
-        public decimal ratings_average { get; set; }
+        public float ratings_average { get; set; }
     }
-
 }

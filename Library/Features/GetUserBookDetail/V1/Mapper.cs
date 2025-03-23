@@ -11,7 +11,8 @@ namespace Library.Features.GetUserBookDetail.V1
               Image = book.Image,
               Rating = userbook.Rating,
               Comments = userbook.Comments,
-              BookId = userbook.BookId,
+              Id = userbook.BookId,
+              Genres = book.Genres ?? [],
           };
        
     }
