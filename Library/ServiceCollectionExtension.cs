@@ -1,5 +1,7 @@
 using System.Text;
 using Library.Entities;
+using Library.Features.CreateBook.V1;
+using Library.Features.CreateBook.V1.Extensions;
 using Library.Features.DownloadBook.V1;
 using Library.Features.DownloadBook.V1.Extensions;
 using Library.Features.GetBookDetail.V1;
@@ -39,6 +41,7 @@ public static class ServiceCollectionExtension
         services.AddGetUserBooksListV1();
         services.AddGetBookV1();
         services.AddDownloadBookV1();
+        services.AddCreateBookV1();
         services.AddSingleton<IRepository<Book>, Repository<Book>>();
         services.AddSingleton<IRepository<UserBook>, Repository<UserBook>>();
         return services;
@@ -53,9 +56,10 @@ public static class ServiceCollectionExtension
         app.MapUpsertBookEndpoint();
         app.MapUpsertUserBookEndpoint();
         app.MapDownloadBookEndpoint();
+        app.MapCreateBookEndpoint();
     }
     
-    public static IServiceCollection AddJWT(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(options =>
         {

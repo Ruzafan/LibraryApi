@@ -35,4 +35,6 @@ public class Constants
         "Technology",
         "Children"
     ];
+    
+    public const string ImagesBlobContainer = "images";
 }

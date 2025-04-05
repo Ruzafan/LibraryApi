@@ -25,7 +25,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddHttpClient();
 
 
-builder.Services.AddJWT(builder.Configuration);
+builder.Services.AddJwt(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
