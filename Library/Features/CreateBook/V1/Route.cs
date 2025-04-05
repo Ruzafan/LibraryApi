@@ -4,7 +4,7 @@
     {
         public static void MapCreateBookEndpoint(this WebApplication app)
         {
-            app.MapPost("/library/book/v1", async (HttpRequest request, CancellationToken cancellationToken, Handler handler) =>
+            app.MapPost("/library/book/create/v1", async (HttpRequest request, CancellationToken cancellationToken, Handler handler) =>
                 {
                     var form = await request.ReadFormAsync(cancellationToken);
                     var handlerRequest = new Request
