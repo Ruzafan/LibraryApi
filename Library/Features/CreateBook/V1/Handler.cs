@@ -8,7 +8,7 @@ namespace Library.Features.CreateBook.V1
     {
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken = default)
         {
-            await bookRepository.Add(new Book(request.Title)
+            await bookRepository.Add(new Book(request.Title,true)
             {
                 Image = await UploadImage(request.Image),
                 Status = Status.Active,
@@ -29,14 +29,14 @@ namespace Library.Features.CreateBook.V1
             var blobServiceClient = new BlobServiceClient(storageConnectionString);
             var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
             await containerClient.CreateIfNotExistsAsync();
-
-            var blobClient = containerClient.GetBlobClient(Guid.NewGuid() + "_" + file.FileName);
+            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            var blobClient = containerClient.GetBlobClient(fileName);
             await using (var stream = file.OpenReadStream())
             {
                 await blobClient.UploadAsync(stream);
             }
 
-            return blobClient.Uri.ToString();
+            return $"https://readrstorage.blob.core.windows.net/images/{fileName}";
             
         }
     }
