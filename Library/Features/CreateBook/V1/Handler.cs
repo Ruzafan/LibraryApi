@@ -1,6 +1,7 @@
 using Azure.Storage.Blobs;
 using Library.Entities;
 using Library.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Library.Features.CreateBook.V1
 {
@@ -15,7 +16,8 @@ namespace Library.Features.CreateBook.V1
                 Title = request.Title,
                 Authors = request.Authors,
                 Genres = request.Genres,
-                Sinopsis = request.Description
+                Sinopsis = request.Description,
+                Created = DateTime.UtcNow,
                 
             }, cancellationToken);
             return new Response();

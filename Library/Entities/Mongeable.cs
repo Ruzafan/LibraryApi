@@ -27,5 +27,8 @@ namespace Library.Entities
 
             return Convert.ToHexString(hashBytes); // .NET 5 +
         }
+        
+        public DateTime Created { get; set; }
+        public DateTime Updated { get; set; }
     }
 }
