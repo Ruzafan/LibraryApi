@@ -20,7 +20,7 @@
                         return Results.BadRequest("Image is required.");
                     handlerRequest.Image = file;
                     var response = await handler.Handle(handlerRequest, cancellationToken);
-                    return response.Errors.Count != 0 ? Results.Problem() : Results.Ok();
+                    return response.Errors != null && response.Errors.Count != 0 ? Results.Problem() : Results.Ok();
                 })
                 .WithName("CreateBook")
                 .RequireAuthorization();
