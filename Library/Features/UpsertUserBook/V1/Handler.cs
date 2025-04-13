@@ -20,7 +20,8 @@ namespace Library.Features.UpsertUserBook.V1
                 CreationDate = DateTime.UtcNow,
                 UserId = request.UserId,
                 Rating = request.Rating,
-                StatusType = request.GetStatusType()
+                StatusType = request.GetStatusType(),
+                Genres = request.Genres
             }, cancellationToken);
 
             return new Response();
