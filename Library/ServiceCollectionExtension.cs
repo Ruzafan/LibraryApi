@@ -2,6 +2,8 @@ using System.Text;
 using Library.Entities;
 using Library.Features.CreateBook.V1;
 using Library.Features.CreateBook.V1.Extensions;
+using Library.Features.DeleteUserBook.V1;
+using Library.Features.DeleteUserBook.V1.Extensions;
 using Library.Features.DownloadBook.V1;
 using Library.Features.DownloadBook.V1.Extensions;
 using Library.Features.GetBookDetail.V1;
@@ -45,6 +47,7 @@ public static class ServiceCollectionExtension
         services.AddDownloadBookV1();
         services.AddCreateBookV1();
         services.AddWishlistV1();
+        services.AddDeleteUserBookV1();
         services.AddSingleton<IRepository<Book>, Repository<Book>>();
         services.AddSingleton<IRepository<UserBook>, Repository<UserBook>>();
         return services;
@@ -61,6 +64,7 @@ public static class ServiceCollectionExtension
         app.MapDownloadBookEndpoint();
         app.MapCreateBookEndpoint();
         app.MapWishedEndpoint();
+        app.MapDeleteUserBookEndpoint();
     }
     
     public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration)
