@@ -16,6 +16,8 @@ using Library.Features.UpsertBook.V1;
 using Library.Features.UpsertBook.V1.Extensions;
 using Library.Features.UpsertUserBook.V1;
 using Library.Features.UpsertUserBook.V1.Extensions;
+using Library.Features.WishlistBook.V1;
+using Library.Features.WishlistBook.V1.Extensions;
 using Library.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -42,6 +44,7 @@ public static class ServiceCollectionExtension
         services.AddGetBookV1();
         services.AddDownloadBookV1();
         services.AddCreateBookV1();
+        services.AddWishlistV1();
         services.AddSingleton<IRepository<Book>, Repository<Book>>();
         services.AddSingleton<IRepository<UserBook>, Repository<UserBook>>();
         return services;
@@ -57,6 +60,7 @@ public static class ServiceCollectionExtension
         app.MapUpsertUserBookEndpoint();
         app.MapDownloadBookEndpoint();
         app.MapCreateBookEndpoint();
+        app.MapWishedEndpoint();
     }
     
     public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration)

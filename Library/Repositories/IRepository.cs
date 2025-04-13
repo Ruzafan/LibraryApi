@@ -15,4 +15,5 @@ public interface IRepository<T> where T : class
         CancellationToken cancellationToken = default);
 
     Task Update(string id, UpdateDefinition<T> update, CancellationToken cancellationToken);
+    Task Delete(string id, CancellationToken cancellationToken);
 }
