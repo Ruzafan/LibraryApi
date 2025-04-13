@@ -12,6 +12,7 @@ namespace Library.Features.UpsertUserBook.V1
         
         public bool Owned { get; set; }
         public bool WishList { get; set; }
+        public bool Delete { get; set; }
 
         public StatusType GetStatusType()
         {
