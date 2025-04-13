@@ -8,8 +8,10 @@ namespace Library.Features.DeleteUserBook.V1
     {
         public static void MapDeleteUserBookEndpoint(this WebApplication app)
         {
-            app.MapDelete("/library/userbook/v1", async ([FromBody] Request request, HttpContext httpContext, CancellationToken cancellationToken, [FromServices] Handler handler) =>
+            app.MapDelete("/library/userbook/v1", async ([FromQuery] string bookId, HttpContext httpContext, CancellationToken cancellationToken, [FromServices] Handler handler) =>
                 {
+                    var request = new Request();
+                    request.BookId = bookId;
                     request.UserId  = httpContext.User.Claims.First(q=> q.Type == ClaimTypes.Name).Value;
                     var response = await handler.Handle(request, cancellationToken);
                     return response.Errors.Count != 0 
