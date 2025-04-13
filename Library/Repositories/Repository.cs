@@ -40,5 +40,11 @@ public class Repository<T> : IRepository<T> where T : class
     {
         return _mongoCollection.Find(filterDefinition).SingleAsync(cancellationToken: cancellationToken);
     }
+
+    public async Task Update(string id, UpdateDefinition<T> element, CancellationToken cancellationToken)
+    {
+        var filter = Builders<T>.Filter.Eq("_id", id);
+        await _mongoCollection.UpdateOneAsync(filter, element,null, cancellationToken);
+    }
 }
 

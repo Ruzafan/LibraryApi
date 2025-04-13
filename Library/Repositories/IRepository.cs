@@ -1,3 +1,4 @@
+using Library.Entities;
 using MongoDB.Driver;
 
 namespace Library.Repositories;
@@ -12,4 +13,6 @@ public interface IRepository<T> where T : class
     Task Add(T element, CancellationToken cancellationToken);
     Task<T> FindOne(FilterDefinition<T> filterDefinition,
         CancellationToken cancellationToken = default);
+
+    Task Update(string id, UpdateDefinition<T> update, CancellationToken cancellationToken);
 }
