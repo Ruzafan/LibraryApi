@@ -3,6 +3,7 @@ using Library.Entities;
 using Library.Features.CreateBook.V1;
 using Library.Features.CreateBook.V1.Extensions;
 using Library.Features.DeleteBook.V1;
+using Library.Features.DeleteBook.V1.Extensions;
 using Library.Features.DeleteUserBook.V1;
 using Library.Features.DeleteUserBook.V1.Extensions;
 using Library.Features.DownloadBook.V1;
@@ -49,7 +50,7 @@ public static class ServiceCollectionExtension
         services.AddCreateBookV1();
         services.AddWishlistV1();
         services.AddDeleteUserBookV1();
-        services.AddDeleteUserBookV1();
+        services.AddDeleteBookV1();
         services.AddSingleton<IRepository<Book>, Repository<Book>>();
         services.AddSingleton<IRepository<UserBook>, Repository<UserBook>>();
         return services;
