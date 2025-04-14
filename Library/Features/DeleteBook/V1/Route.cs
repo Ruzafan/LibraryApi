@@ -8,7 +8,7 @@ namespace Library.Features.DeleteBook.V1
     {
         public static void MapDeleteBookEndpoint(this WebApplication app)
         {
-            app.MapDelete("/library/book/v1", async ([FromQuery] string bookId, HttpContext httpContext, CancellationToken cancellationToken, [FromServices] Handler handler) =>
+            app.MapDelete("/library/book/delete/v1", async ([FromQuery] string bookId, HttpContext httpContext, CancellationToken cancellationToken, [FromServices] Handler handler) =>
                 {
                     var request = new Request();
                     request.BookId = bookId;
