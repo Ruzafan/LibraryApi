@@ -9,6 +9,8 @@ public static class Mapper
         {
             Title = bookEntity.Title,
             Image = bookEntity.Image,
-            Authors = bookEntity.Authors
+            Authors = bookEntity.Authors,
+            Description = bookEntity.Sinopsis,
+            Genres = bookEntity.Genres,
         };
 }
