@@ -4,7 +4,7 @@ namespace Library.Features.GetBookDetail.V1;
 
 public static class Mapper
 {
-    public static Response ToResponse(this Book bookEntity)
+    public static Response ToResponse(this Book bookEntity, UserBook? userBook)
         => new()
         {
             Title = bookEntity.Title,
@@ -12,5 +12,6 @@ public static class Mapper
             Authors = bookEntity.Authors,
             Description = bookEntity.Sinopsis,
             Genres = bookEntity.Genres,
+            IsAssigned = userBook != null
         };
 }
