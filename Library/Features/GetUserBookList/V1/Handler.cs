@@ -21,7 +21,7 @@ namespace Library.Features.GetUserBookList.V1
 
             return new Response()
             {
-                Books = books.ToBookResponse()
+                Books = books.ToBookResponse(userBooks)
             };
         }
     }
