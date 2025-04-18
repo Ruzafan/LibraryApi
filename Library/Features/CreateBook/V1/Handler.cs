@@ -18,6 +18,9 @@ namespace Library.Features.CreateBook.V1
                 Genres = request.Genres,
                 Sinopsis = request.Description,
                 Created = DateTime.UtcNow,
+                CreatedBy = request.UserId,
+                Updated = DateTime.UtcNow,
+                Pages = request.Pages
                 
             }, cancellationToken);
             return new Response();

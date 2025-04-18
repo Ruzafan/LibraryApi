@@ -7,5 +7,7 @@ namespace Library.Features.CreateBook.V1
         public List<string>? Authors { get; set; }
         public List<string> Genres { get; set; }
         public string Description { get; set; }
+        public string UserId { get; set; }
+        public int Pages { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace Library.Features.GetUserBookList.V1
         {
             var userBookFilter = Builders<UserBook>.Filter;
             
-            var userFilter = userBookFilter.And(userBookFilter.Eq(u => u.UserId, request.UserId));
-                //, userBookFilter.Eq(q=>q.StatusType, StatusType.Owned) );
+            var userFilter = userBookFilter.And(userBookFilter.Eq(u => u.UserId, request.UserId)
+                , userBookFilter.In(q=>q.StatusType, [StatusType.Owned,StatusType.Rented]));
             var userBooks = await repository.QueryItems(userFilter, cancellationToken);
             if(userBooks.Count == 0) { return new Response(); }
 
