@@ -11,12 +11,6 @@ namespace Library.Features.UpsertUserBook.V1
         public int Rating { get; set; }
         
         public bool Owned { get; set; }
-        public bool WishList { get; set; }
-        public StatusType GetStatusType()
-        {
-            if(Owned) return StatusType.Owned;
-            if(WishList) return StatusType.WishList;
-            return StatusType.Unknown;
-        }
+       
     }
 }

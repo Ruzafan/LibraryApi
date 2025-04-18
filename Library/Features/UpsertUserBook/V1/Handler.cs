@@ -40,7 +40,7 @@ namespace Library.Features.UpsertUserBook.V1
                     CreationDate = DateTime.UtcNow,
                     UserId = request.UserId,
                     Rating = request.Rating,
-                    StatusType = request.GetStatusType(),
+                    StatusType = request.Owned ? StatusType.Owned : StatusType.Rented,
                     Genres = request.Genres
                 }, cancellationToken);
             }
