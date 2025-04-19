@@ -17,7 +17,11 @@ namespace Library.Features.GetBooksList.V1
             List<string> wishedBooks = [];
             if (!string.IsNullOrEmpty(userId))
             {
-                var userBookFilter = Builders<UserBook>.Filter.In(q=>q.BookId, bookEntity.Select(q=>q.Id));
+                var userBookFilter = Builders<UserBook>.Filter.And(
+                    Builders<UserBook>.Filter.Eq(ub => ub.UserId, userId),
+                    Builders<UserBook>.Filter.In(ub => ub.BookId, bookEntity.Select(b => b.Id)),
+                    Builders<UserBook>.Filter.Eq(ub => ub.Ownership, Ownership.WishList)
+                );
                 var userBooks = await userBookRepository.QueryItems(userBookFilter, cancellationToken);
                 wishedBooks = userBooks.Select(q => q.BookId).ToList();
             }
