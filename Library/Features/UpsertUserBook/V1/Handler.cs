@@ -27,7 +27,11 @@ namespace Library.Features.UpsertUserBook.V1
                     Builders<UserBook>.Update.Set(x => x.Comments, request.Comments),
                     Builders<UserBook>.Update.Set(x => x.Genres, request.Genres),
                     Builders<UserBook>.Update.Set(x => x.LastModifiedDate, DateTime.UtcNow),
-                    Builders<UserBook>.Update.Set(x => x.Rating, request.Rating)
+                    Builders<UserBook>.Update.Set(x => x.Rating, request.Rating),
+                    Builders<UserBook>.Update.Set(x => x.ReadingStatus, request.ReadingStatus),
+                    Builders<UserBook>.Update.Set(x => x.Ownership, request.Ownership),
+                    Builders<UserBook>.Update.Set(x => x.StartDate, request.StartDate),
+                    Builders<UserBook>.Update.Set(x => x.EndDate, request.EndDate)
                 );
                 await userBookRepository.Update(userBooks.FirstOrDefault().Id, userBookBuilder, cancellationToken);
             }
@@ -40,8 +44,9 @@ namespace Library.Features.UpsertUserBook.V1
                     CreationDate = DateTime.UtcNow,
                     UserId = request.UserId,
                     Rating = request.Rating,
-                    StatusType = request.Owned ? StatusType.Owned : StatusType.Rented,
-                    Genres = request.Genres
+                    Ownership = request.Ownership,
+                    ReadingStatus = request.ReadingStatus,
+                    Genres = request.Genres.Count == 0 ? book.Genres : request.Genres,
                 }, cancellationToken);
             }
 

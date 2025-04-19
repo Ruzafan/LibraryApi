@@ -12,7 +12,11 @@ namespace Library.Features.GetUserBookDetail.V1
               Rating = userBook.Rating,
               Comments = userBook.Comments,
               Id = userBook.BookId,
-              Genres = (userBook.Genres ?? book.Genres) ?? [],
+              Genres = userBook.Genres ?? [],
+              Ownership = userBook.Ownership,
+              StartDate = userBook.StartDate,
+              EndDate = userBook.EndDate,
+              ReadingStatus = userBook.ReadingStatus
           };
        
     }

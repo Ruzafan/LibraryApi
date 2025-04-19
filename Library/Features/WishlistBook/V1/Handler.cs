@@ -18,7 +18,7 @@ namespace Library.Features.WishlistBook.V1
             var builder =Builders<UserBook>.Filter;
             var filter = builder.And( builder.Eq(x => x.BookId, request.BookId),
                 builder.Eq(x => x.UserId, request.UserId),
-                builder.Eq(x => x.StatusType, StatusType.WishList));
+                builder.Eq(x => x.Ownership, Ownership.WishList));
             var userBooks = await userBookRepository.QueryItems(filter,cancellationToken);
             if (userBooks != null && userBooks.Count != 0)
             {
@@ -32,7 +32,7 @@ namespace Library.Features.WishlistBook.V1
                     BookId = request.BookId,
                     CreationDate = DateTime.UtcNow,
                     UserId = request.UserId,
-                    StatusType = StatusType.WishList,
+                    Ownership = Ownership.WishList,
                 }, cancellationToken);
             }
             

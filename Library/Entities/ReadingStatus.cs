@@ -2,7 +2,7 @@ namespace Library.Entities;
 
 public enum ReadingStatus
 {
-    Started,
+    Pending,
     Reading,
     Finished,
     Abandoned
