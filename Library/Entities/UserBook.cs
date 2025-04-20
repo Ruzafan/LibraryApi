@@ -1,5 +1,8 @@
-﻿namespace Library.Entities
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace Library.Entities
 {
+    [BsonIgnoreExtraElements]
     public class UserBook : Auditable
     {
         public string UserId { get; set; }
