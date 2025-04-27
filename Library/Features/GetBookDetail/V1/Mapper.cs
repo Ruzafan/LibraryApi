@@ -12,6 +12,7 @@ public static class Mapper
             Authors = bookEntity.Authors,
             Description = bookEntity.Sinopsis,
             Genres = bookEntity.Genres,
-            IsAssigned = userBook != null
+            IsAssigned = userBook != null,
+            Pages = bookEntity.Pages,
         };
 }

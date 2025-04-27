@@ -8,4 +8,5 @@ public class Response
     public required string Description { get; set; }
     public List<string>? Genres { get; set; }
     public bool IsAssigned { get; set; }
+    public int Pages { get; set; }
 }
