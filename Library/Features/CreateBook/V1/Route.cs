@@ -16,7 +16,7 @@ namespace Library.Features.CreateBook.V1
                         Genres = form["genres"].ToString().Split(",").ToList(),
                         Description = form["description"].ToString(),
                         Pages = Convert.ToInt32(form["pages"]),
-                        UserId = httpContext.User.Claims.First(q=> q.Type == ClaimTypes.Name).Value
+                        UserId = "7479e618-2f55-4345-acf9-01aaa28f6db9"//httpContext.User.Claims.First(q=> q.Type == ClaimTypes.Name).Value
                     };
 
                     var file = form.Files["image"];
@@ -26,8 +26,8 @@ namespace Library.Features.CreateBook.V1
                     var response = await handler.Handle(handlerRequest, cancellationToken);
                     return response.Errors != null && response.Errors.Count != 0 ? Results.Problem() : Results.Ok();
                 })
-                .WithName("CreateBook")
-                .RequireAuthorization();
+                .WithName("CreateBook");
+                //.RequireAuthorization();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Library.Features.UpsertUserBook.V1
                     Rating = request.Rating,
                     Ownership = request.Ownership,
                     ReadingStatus = request.ReadingStatus,
-                    Genres = request.Genres.Count == 0 ? book.Genres : request.Genres,
+                    Genres = request.Genres != null && request.Genres.Count == 0 ? book.Genres : request.Genres,
                 }, cancellationToken);
             }
 
