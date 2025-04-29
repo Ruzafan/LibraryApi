@@ -11,7 +11,9 @@ namespace Library.Features.GetUserBookList.V1
             var userBookFilter = Builders<UserBook>.Filter;
             
             var userFilter = userBookFilter.And(userBookFilter.Eq(u => u.UserId, request.UserId)
-                , userBookFilter.In(q=>q.Ownership, [Ownership.Owned,Ownership.Rented, Ownership.Lent]));
+                , userBookFilter.In(q=>q.Ownership, request.WishList 
+                    ? [Ownership.WishList]
+                    : [Ownership.Owned,Ownership.Rented, Ownership.Lent]));
             var userBooks = await repository.QueryItems(userFilter, cancellationToken);
             if(userBooks.Count == 0) { return new Response(); }
 
