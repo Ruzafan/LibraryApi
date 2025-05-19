@@ -13,9 +13,9 @@ namespace Library.Features.GetUserBookDetail.V1
         public string? Comments { get; set; }
         public List<string> Genres { get; set; }
         
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Ownership Ownership { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
 
         public ReadingStatus ReadingStatus { get; set; }
         public DateTime? StartDate { get; set; }
