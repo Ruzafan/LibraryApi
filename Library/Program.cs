@@ -1,9 +1,13 @@
+using System.Text.Json.Serialization;
 using Library;
 using Library.Features.GetBookDetail.V1;
 using Library.Features.GetBooksList;
 using Library.Features.GetBooksList.V1;
 using Library.Features.GetBooksList.V1.Extensions;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +27,10 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddHttpClient();
-
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 builder.Services.AddJwt(builder.Configuration);
 var app = builder.Build();
