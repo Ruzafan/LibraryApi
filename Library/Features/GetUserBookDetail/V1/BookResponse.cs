@@ -1,4 +1,6 @@
-﻿using Library.Entities;
+﻿using System.Text.Json.Serialization;
+using Library.Entities;
+using Newtonsoft.Json.Converters;
 
 namespace Library.Features.GetUserBookDetail.V1
 {
@@ -10,7 +12,11 @@ namespace Library.Features.GetUserBookDetail.V1
         public decimal Rating { get; set; }
         public string? Comments { get; set; }
         public List<string> Genres { get; set; }
+        
+        [JsonConverter(typeof(StringEnumConverter))]
         public Ownership Ownership { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+
         public ReadingStatus ReadingStatus { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

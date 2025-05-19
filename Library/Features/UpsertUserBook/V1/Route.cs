@@ -8,7 +8,7 @@ namespace Library.Features.UpsertUserBook.V1
     {
         public static void MapUpsertUserBookEndpoint(this WebApplication app)
         {
-            app.MapPost("/library/userbook/v1", async ([FromBody] Request request, HttpContext httpContext, CancellationToken cancellationToken, [FromServices] Handler handler) =>
+                app.MapPost("/library/userbook/v1", async ([FromBody] Request request, HttpContext httpContext, CancellationToken cancellationToken, [FromServices] Handler handler) =>
                 {
                     request.UserId  = httpContext.User.Claims.First(q=> q.Type == ClaimTypes.Name).Value;
                     var response = await handler.Handle(request, cancellationToken);
